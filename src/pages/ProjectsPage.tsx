@@ -6,10 +6,23 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
+type Project = {
+  title: string;
+  description: string;
+  problem: string;
+  tech: string[];
+  features: string[];
+  github: string;
+  demo?: string;
+  images: string[];
+};
+
 const ProjectsPage = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
 
   const projects = [
     {
@@ -157,13 +170,18 @@ const ProjectsPage = () => {
                 className="group"
               >
                 {/* Project Card */}
-                <div className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full flex flex-col">
+                <div 
+                  className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full flex flex-col cursor-pointer"
+                  onClick={() => { setSelectedProject(project); setDetailModalOpen(true); }}
+                >
                   {/* Image Carousel */}
-                  <ImageCarousel 
-                    images={project.images} 
-                    title={project.title}
-                    onImageClick={(index) => openLightbox(project.images, index)}
-                  />
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <ImageCarousel 
+                      images={project.images} 
+                      title={project.title}
+                      onImageClick={(index) => openLightbox(project.images, index)}
+                    />
+                  </div>
 
                   {/* Content */}
                   <div className="p-5 flex flex-col flex-grow">
@@ -274,6 +292,139 @@ const ProjectsPage = () => {
               </div>
             )}
           </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Project Detail Modal */}
+      <Dialog open={detailModalOpen} onOpenChange={setDetailModalOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 bg-card border-border">
+          {selectedProject && (
+            <>
+              {/* Header Image */}
+              <div className="relative aspect-video overflow-hidden">
+                <img
+                  src={selectedProject.images[0]}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                <button
+                  onClick={() => setDetailModalOpen(false)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-background/80 text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 space-y-6">
+                {/* Title */}
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-muted-foreground mt-2 leading-relaxed">
+                    {selectedProject.description}
+                  </p>
+                </div>
+
+                {/* Problem Statement */}
+                <div className="p-4 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
+                  <span className="font-mono text-xs text-primary uppercase tracking-wider flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    Problem Solved
+                  </span>
+                  <p className="text-foreground mt-2">{selectedProject.problem}</p>
+                </div>
+
+                {/* Key Features */}
+                <div>
+                  <h3 className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">
+                    Key Features
+                  </h3>
+                  <ul className="grid sm:grid-cols-2 gap-2">
+                    {selectedProject.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-foreground text-sm">
+                        <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        </span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Tech Stack */}
+                <div>
+                  <h3 className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">
+                    Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="font-mono text-sm px-3 py-1.5 rounded-full bg-muted/50 text-foreground border border-border"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Screenshots */}
+                {selectedProject.images.length > 1 && (
+                  <div>
+                    <h3 className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">
+                      Screenshots
+                    </h3>
+                    <div className="grid grid-cols-3 gap-2">
+                      {selectedProject.images.map((image, index) => (
+                        <button
+                          key={index}
+                          onClick={() => openLightbox(selectedProject.images, index)}
+                          className="relative aspect-video rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-colors"
+                        >
+                          <img
+                            src={image}
+                            alt={`Screenshot ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-background/0 hover:bg-background/20 transition-colors flex items-center justify-center">
+                            <Expand className="h-5 w-5 text-foreground opacity-0 hover:opacity-100 transition-opacity" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Links */}
+                <div className="flex gap-3 pt-2 border-t border-border">
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background font-medium text-sm hover:bg-primary transition-colors"
+                  >
+                    <Github className="h-4 w-4" />
+                    View Code
+                  </a>
+                  {selectedProject.demo && (
+                    <a
+                      href={selectedProject.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-foreground font-medium text-sm hover:border-primary hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Live Demo
+                      <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </DialogContent>
       </Dialog>
 
