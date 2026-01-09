@@ -1,7 +1,9 @@
 import { ExternalLink, Github, Folder } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Projects = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.05 });
+
   const projects = [
     {
       title: 'E-Commerce Platform',
@@ -44,9 +46,17 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="section-padding">
+    <section
+      id="projects"
+      className="section-padding"
+      ref={ref as React.RefObject<HTMLElement>}
+    >
       <div className="section-container">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             <span className="text-primary font-mono text-lg md:text-xl block mb-2">03.</span>
             Featured Projects
@@ -64,9 +74,10 @@ const Projects = () => {
             .map((project, index) => (
               <div
                 key={project.title}
-                className={`grid md:grid-cols-12 gap-4 items-center ${
-                  index % 2 === 1 ? 'md:text-right' : ''
-                }`}
+                className={`grid md:grid-cols-12 gap-4 items-center transition-all duration-700 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                } ${index % 2 === 1 ? 'md:text-right' : ''}`}
+                style={{ transitionDelay: `${index * 150 + 200}ms` }}
               >
                 {/* Project Image Placeholder */}
                 <div
@@ -144,12 +155,25 @@ const Projects = () => {
         </div>
 
         {/* Other Projects Grid */}
-        <h3 className="text-xl font-mono text-foreground text-center mb-6">Other Notable Projects</h3>
+        <h3
+          className={`text-xl font-mono text-foreground text-center mb-6 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '500ms' }}
+        >
+          Other Notable Projects
+        </h3>
         <div className="grid sm:grid-cols-2 gap-6">
           {projects
             .filter((p) => !p.featured)
-            .map((project) => (
-              <div key={project.title} className="project-card group">
+            .map((project, index) => (
+              <div
+                key={project.title}
+                className={`project-card group transition-all duration-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 100 + 600}ms` }}
+              >
                 <div className="flex justify-between items-start mb-4">
                   <Folder className="h-10 w-10 text-primary group-hover:scale-110 transition-transform" />
                   <div className="flex gap-3">

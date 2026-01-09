@@ -1,6 +1,9 @@
 import { Code2, Database, Palette, Zap } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const About = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
   const highlights = [
     { icon: Code2, text: 'Clean, maintainable code' },
     { icon: Database, text: 'Scalable backend systems' },
@@ -9,11 +12,19 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding">
+    <section
+      id="about"
+      className="section-padding"
+      ref={ref as React.RefObject<HTMLElement>}
+    >
       <div className="section-container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="order-2 md:order-1">
+          <div
+            className={`order-2 md:order-1 transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               <span className="text-primary font-mono text-lg md:text-xl block mb-2">01.</span>
               About Me
@@ -39,7 +50,13 @@ const About = () => {
             {/* Highlights */}
             <div className="grid grid-cols-2 gap-4 mt-8">
               {highlights.map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
+                <div
+                  key={index}
+                  className={`flex items-center gap-3 transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
+                  style={{ transitionDelay: `${index * 100 + 300}ms` }}
+                >
                   <div className="p-2 rounded-md bg-accent">
                     <item.icon className="h-4 w-4 text-primary" />
                   </div>
@@ -50,7 +67,12 @@ const About = () => {
           </div>
 
           {/* Image/Visual */}
-          <div className="order-1 md:order-2 flex justify-center">
+          <div
+            className={`order-1 md:order-2 flex justify-center transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
             <div className="relative">
               {/* Code block visual */}
               <div className="w-64 h-72 md:w-80 md:h-96 bg-card rounded-lg border border-border p-4 font-mono text-xs md:text-sm overflow-hidden">

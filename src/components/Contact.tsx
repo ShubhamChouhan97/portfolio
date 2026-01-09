@@ -4,9 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Contact = () => {
   const { toast } = useToast();
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,9 +60,17 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding">
+    <section
+      id="contact"
+      className="section-padding"
+      ref={ref as React.RefObject<HTMLElement>}
+    >
       <div className="section-container">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             <span className="text-primary font-mono text-lg md:text-xl block mb-2">05.</span>
             Get In Touch
@@ -74,11 +84,22 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {/* Contact Info */}
-          <div>
+          <div
+            className={`transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+            style={{ transitionDelay: '200ms' }}
+          >
             <h3 className="font-mono text-lg text-foreground mb-6">Contact Information</h3>
             <div className="space-y-4">
-              {contactLinks.map((link) => (
-                <div key={link.label} className="flex items-center gap-4">
+              {contactLinks.map((link, index) => (
+                <div
+                  key={link.label}
+                  className={`flex items-center gap-4 transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                  }`}
+                  style={{ transitionDelay: `${index * 100 + 300}ms` }}
+                >
                   <div className="p-3 rounded-lg bg-accent">
                     <link.icon className="h-5 w-5 text-primary" />
                   </div>
@@ -102,7 +123,12 @@ const Contact = () => {
             </div>
 
             {/* Availability */}
-            <div className="mt-8 p-4 bg-accent/50 rounded-lg border border-primary/20">
+            <div
+              className={`mt-8 p-4 bg-accent/50 rounded-lg border border-primary/20 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{ transitionDelay: '600ms' }}
+            >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 <span className="font-mono text-sm text-primary">Currently Available</span>
@@ -114,10 +140,20 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div>
+          <div
+            className={`transition-all duration-700 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+            style={{ transitionDelay: '300ms' }}
+          >
             <h3 className="font-mono text-lg text-foreground mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
+              <div
+                className={`transition-all duration-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '400ms' }}
+              >
                 <label htmlFor="name" className="block text-sm font-mono text-muted-foreground mb-2">
                   Name
                 </label>
@@ -130,7 +166,12 @@ const Contact = () => {
                   className="bg-card border-border focus:border-primary"
                 />
               </div>
-              <div>
+              <div
+                className={`transition-all duration-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '500ms' }}
+              >
                 <label htmlFor="email" className="block text-sm font-mono text-muted-foreground mb-2">
                   Email
                 </label>
@@ -144,7 +185,12 @@ const Contact = () => {
                   className="bg-card border-border focus:border-primary"
                 />
               </div>
-              <div>
+              <div
+                className={`transition-all duration-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '600ms' }}
+              >
                 <label htmlFor="message" className="block text-sm font-mono text-muted-foreground mb-2">
                   Message
                 </label>
@@ -158,7 +204,16 @@ const Contact = () => {
                   className="bg-card border-border focus:border-primary resize-none"
                 />
               </div>
-              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                variant="hero"
+                size="lg"
+                className={`w-full transition-all duration-500 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: '700ms' }}
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? (
                   'Sending...'
                 ) : (
