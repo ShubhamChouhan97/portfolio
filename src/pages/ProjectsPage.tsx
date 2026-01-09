@@ -298,13 +298,37 @@ interface ImageCarouselProps {
 
 const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    if (isAnimating) return;
+    setDirection('right');
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setIsAnimating(false);
+    }, 300);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    if (isAnimating) return;
+    setDirection('left');
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const goToSlide = (index: number) => {
+    if (isAnimating || index === currentIndex) return;
+    setDirection(index > currentIndex ? 'right' : 'left');
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsAnimating(false);
+    }, 300);
   };
 
   return (
@@ -314,11 +338,23 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
         className="relative aspect-video overflow-hidden cursor-pointer"
         onClick={() => onImageClick(currentIndex)}
       >
-        <img
-          src={images[currentIndex]}
-          alt={`${title} - Screenshot ${currentIndex + 1}`}
-          className="w-full h-full object-cover transition-transform duration-700"
-        />
+        <div 
+          className="flex h-full transition-transform duration-500 ease-out"
+          style={{ 
+            width: `${images.length * 100}%`,
+            transform: `translateX(-${currentIndex * (100 / images.length)}%)` 
+          }}
+        >
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`${title} - Screenshot ${index + 1}`}
+              className="h-full object-cover flex-shrink-0"
+              style={{ width: `${100 / images.length}%` }}
+            />
+          ))}
+        </div>
         
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-background/60 opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -356,7 +392,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
           {images.map((image, index) => (
             <button
               key={index}
-              onClick={(e) => { e.stopPropagation(); setCurrentIndex(index); }}
+              onClick={(e) => { e.stopPropagation(); goToSlide(index); }}
               className={`w-12 h-8 rounded-md overflow-hidden border-2 transition-all ${
                 index === currentIndex 
                   ? 'border-primary scale-110' 
