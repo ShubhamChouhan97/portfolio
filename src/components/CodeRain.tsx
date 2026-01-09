@@ -1,18 +1,20 @@
 const HeroBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
+      {/* Gradient mesh */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/3" />
       
-      {/* Subtle dot pattern */}
+      {/* Animated scanline */}
       <div 
-        className="absolute inset-0 opacity-[0.4]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `radial-gradient(circle, hsl(var(--primary) / 0.15) 1px, transparent 1px)`,
-          backgroundSize: '32px 32px',
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, currentColor 2px, currentColor 3px)',
+          backgroundSize: '100% 4px',
         }}
       />
+      
+      {/* Single accent line */}
+      <div className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
     </div>
   );
 };
