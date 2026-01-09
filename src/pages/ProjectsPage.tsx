@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ExternalLink, Github, ArrowUpRight, ArrowLeft, ChevronLeft, ChevronRight, X, Expand } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -300,8 +300,9 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isAnimating) return;
     setDirection('right');
     setIsAnimating(true);
@@ -309,7 +310,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
       setIsAnimating(false);
     }, 300);
-  };
+  }, [isAnimating, images.length]);
 
   const prevSlide = () => {
     if (isAnimating) return;
@@ -331,8 +332,23 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     }, 300);
   };
 
+  // Auto-play functionality
+  useEffect(() => {
+    if (images.length <= 1 || isPaused) return;
+
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [images.length, isPaused, nextSlide]);
+
   return (
-    <div className="relative group/carousel">
+    <div 
+      className="relative group/carousel"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* Main Image */}
       <div 
         className="relative aspect-video overflow-hidden cursor-pointer"
