@@ -1,12 +1,27 @@
 const HeroBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Animated gradient blobs */}
-      <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/[0.03] rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-primary/[0.02] rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
+      {/* Wireframe grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, hsl(var(--primary)) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--primary)) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}
+      />
       
-      {/* Subtle vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-50" />
+      {/* Animated horizontal scan line */}
+      <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent animate-scan-y" />
+      
+      {/* Animated vertical scan line */}
+      <div className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent animate-scan-x" />
+      
+      {/* Corner accents */}
+      <div className="absolute top-0 left-0 w-32 h-32 border-l border-t border-primary/10" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-r border-b border-primary/10" />
     </div>
   );
 };
