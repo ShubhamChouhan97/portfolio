@@ -13,6 +13,7 @@ const Projects = () => {
       github: 'https://github.com',
       demo: 'https://demo.com',
       featured: true,
+      gradient: 'from-primary/20 to-primary/5',
     },
     {
       title: 'Task Management Dashboard',
@@ -22,6 +23,7 @@ const Projects = () => {
       github: 'https://github.com',
       demo: 'https://demo.com',
       featured: true,
+      gradient: 'from-primary/10 to-primary/20',
     },
     {
       title: 'API Rate Limiter',
@@ -64,24 +66,21 @@ const Projects = () => {
           <div className="h-px w-24 bg-primary/50 mt-4" />
         </div>
 
-        {/* Featured Projects - Unified Cards */}
+        {/* Featured Projects - Bento Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-16">
           {featuredProjects.map((project, index) => (
             <div
               key={project.title}
-              className={`group relative p-6 md:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-border overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 ${
+              className={`group relative bg-card rounded-2xl border border-border overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150 + 200}ms` }}
             >
-              {/* Gradient Background on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Corner Glow */}
-              <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
               {/* Content */}
-              <div className="relative z-10 h-full flex flex-col">
+              <div className="relative p-8 h-full flex flex-col">
                 {/* Header */}
                 <div className="flex justify-between items-start mb-6">
                   <span className="font-mono text-xs text-primary px-3 py-1 rounded-full border border-primary/30 bg-primary/5">
@@ -126,7 +125,7 @@ const Projects = () => {
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="font-mono text-xs px-3 py-1.5 rounded-lg bg-muted/50 text-muted-foreground border border-border"
+                      className="font-mono text-xs px-3 py-1.5 rounded-lg bg-muted/50 text-muted-foreground"
                     >
                       {tech}
                     </span>
@@ -134,7 +133,7 @@ const Projects = () => {
                 </div>
 
                 {/* Hover Arrow */}
-                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                   <ArrowUpRight className="h-6 w-6 text-primary" />
                 </div>
               </div>
@@ -160,7 +159,7 @@ const Projects = () => {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex items-center justify-between p-5 rounded-2xl border border-border bg-card/80 backdrop-blur-sm hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 ${
+                className={`group flex items-center justify-between p-5 rounded-xl border border-border bg-card/50 hover:border-primary/30 hover:bg-card transition-all duration-300 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${index * 100 + 600}ms` }}
