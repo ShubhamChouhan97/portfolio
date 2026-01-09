@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import CodeRain from './CodeRain';
+import FloatingParticles from './CodeRain';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
@@ -22,11 +22,8 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
-      {/* Code Rain Background */}
-      <CodeRain />
-      
-      {/* Gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background pointer-events-none" />
+      {/* Floating Particles Background */}
+      <FloatingParticles />
       <div className="section-container relative z-10">
         <div className="max-w-3xl">
           {/* Greeting */}
