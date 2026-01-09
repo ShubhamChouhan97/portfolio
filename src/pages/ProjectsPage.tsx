@@ -150,14 +150,14 @@ const ProjectsPage = () => {
           </div>
 
           {/* Projects */}
-          <div className="space-y-24">
+          <div className="space-y-12">
             {projects.map((project, projectIndex) => (
               <article
                 key={project.title}
                 className="group"
               >
                 {/* Project Card */}
-                <div className="bg-card rounded-3xl border border-border overflow-hidden hover:border-primary/30 transition-colors duration-300">
+                <div className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-colors duration-300">
                   {/* Image Carousel */}
                   <ImageCarousel 
                     images={project.images} 
@@ -166,39 +166,39 @@ const ProjectsPage = () => {
                   />
 
                   {/* Content */}
-                  <div className="p-8 lg:p-10">
-                    <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="p-5 lg:p-6">
+                    <div className="grid lg:grid-cols-2 gap-6">
                       {/* Left Column */}
-                      <div className="space-y-6">
+                      <div className="space-y-4">
                         <div>
                           <span className="font-mono text-xs text-primary uppercase tracking-wider">
                             Project {String(projectIndex + 1).padStart(2, '0')}
                           </span>
-                          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 group-hover:text-primary transition-colors">
+                          <h2 className="text-xl md:text-2xl font-bold text-foreground mt-1 group-hover:text-primary transition-colors">
                             {project.title}
                           </h2>
                         </div>
 
-                        <p className="text-muted-foreground leading-relaxed text-lg">
+                        <p className="text-muted-foreground leading-relaxed text-sm line-clamp-3">
                           {project.description}
                         </p>
 
                         {/* Problem Statement */}
-                        <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
+                        <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
                           <span className="font-mono text-xs text-primary uppercase tracking-wider flex items-center gap-2">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                             Problem Solved
                           </span>
-                          <p className="text-foreground mt-2">{project.problem}</p>
+                          <p className="text-foreground text-sm mt-1">{project.problem}</p>
                         </div>
 
                         {/* Links */}
-                        <div className="flex gap-4 pt-2">
+                        <div className="flex gap-3 pt-1">
                           <a
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background font-medium text-sm hover:bg-primary transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background font-medium text-xs hover:bg-primary transition-colors"
                           >
                             <Github className="h-4 w-4" />
                             View Code
@@ -208,7 +208,7 @@ const ProjectsPage = () => {
                               href={project.demo}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-foreground font-medium text-sm hover:border-primary hover:text-primary transition-colors"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-colors"
                             >
                               <ExternalLink className="h-4 w-4" />
                               Live Demo
@@ -403,7 +403,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     >
       {/* Main Image */}
       <div 
-        className="relative aspect-video overflow-hidden cursor-pointer touch-pan-y"
+        className="relative aspect-[16/9] max-h-64 overflow-hidden cursor-pointer touch-pan-y"
         onClick={() => onImageClick(currentIndex)}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
