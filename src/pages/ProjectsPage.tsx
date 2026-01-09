@@ -149,15 +149,15 @@ const ProjectsPage = () => {
             <div className="h-px w-24 bg-primary/50 mt-6 mx-auto" />
           </div>
 
-          {/* Projects */}
-          <div className="space-y-12">
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, projectIndex) => (
               <article
                 key={project.title}
                 className="group"
               >
                 {/* Project Card */}
-                <div className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-colors duration-300">
+                <div className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full flex flex-col">
                   {/* Image Carousel */}
                   <ImageCarousel 
                     images={project.images} 
@@ -166,90 +166,61 @@ const ProjectsPage = () => {
                   />
 
                   {/* Content */}
-                  <div className="p-5 lg:p-6">
-                    <div className="grid lg:grid-cols-2 gap-6">
-                      {/* Left Column */}
-                      <div className="space-y-4">
-                        <div>
-                          <span className="font-mono text-xs text-primary uppercase tracking-wider">
-                            Project {String(projectIndex + 1).padStart(2, '0')}
-                          </span>
-                          <h2 className="text-xl md:text-2xl font-bold text-foreground mt-1 group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h2>
-                        </div>
+                  <div className="p-5 flex flex-col flex-grow">
+                    {/* Header */}
+                    <div className="mb-3">
+                      <span className="font-mono text-[10px] text-primary uppercase tracking-wider">
+                        Project {String(projectIndex + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="text-lg font-bold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-1">
+                        {project.title}
+                      </h2>
+                    </div>
 
-                        <p className="text-muted-foreground leading-relaxed text-sm line-clamp-3">
-                          {project.description}
-                        </p>
+                    {/* Description */}
+                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-4">
+                      {project.description}
+                    </p>
 
-                        {/* Problem Statement */}
-                        <div className="p-3 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
-                          <span className="font-mono text-xs text-primary uppercase tracking-wider flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                            Problem Solved
-                          </span>
-                          <p className="text-foreground text-sm mt-1">{project.problem}</p>
-                        </div>
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tech.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="font-mono text-[10px] px-2 py-1 rounded-md bg-muted/50 text-muted-foreground border border-border"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > 4 && (
+                        <span className="font-mono text-[10px] px-2 py-1 rounded-md bg-muted/50 text-muted-foreground">
+                          +{project.tech.length - 4}
+                        </span>
+                      )}
+                    </div>
 
-                        {/* Links */}
-                        <div className="flex gap-3 pt-1">
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background font-medium text-xs hover:bg-primary transition-colors"
-                          >
-                            <Github className="h-4 w-4" />
-                            View Code
-                          </a>
-                          {project.demo && (
-                            <a
-                              href={project.demo}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-colors"
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                              Live Demo
-                              <ArrowUpRight className="h-3 w-3" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Right Column */}
-                      <div className="space-y-6">
-                        {/* Key Features */}
-                        <div>
-                          <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">Key Features</span>
-                          <ul className="mt-4 grid gap-3">
-                            {project.features.map((feature) => (
-                              <li key={feature} className="flex items-center gap-3 text-foreground">
-                                <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                  <span className="w-2 h-2 rounded-full bg-primary" />
-                                </span>
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Tech Stack */}
-                        <div>
-                          <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">Tech Stack</span>
-                          <div className="flex flex-wrap gap-2 mt-4">
-                            {project.tech.map((tech) => (
-                              <span
-                                key={tech}
-                                className="font-mono text-sm px-4 py-2 rounded-full bg-muted/50 text-foreground border border-border hover:border-primary/50 transition-colors"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+                    {/* Links - Push to bottom */}
+                    <div className="flex gap-2 mt-auto pt-3 border-t border-border">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-foreground text-background font-medium text-xs hover:bg-primary transition-colors"
+                      >
+                        <Github className="h-3.5 w-3.5" />
+                        Code
+                      </a>
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-colors"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          Demo
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -403,7 +374,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     >
       {/* Main Image */}
       <div 
-        className="relative aspect-[16/9] max-h-64 overflow-hidden cursor-pointer touch-pan-y"
+        className="relative aspect-video overflow-hidden cursor-pointer touch-pan-y"
         onClick={() => onImageClick(currentIndex)}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
