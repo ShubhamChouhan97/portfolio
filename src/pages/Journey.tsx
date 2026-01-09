@@ -1,9 +1,19 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, GraduationCap, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import profileAvatar from '@/assets/profile-avatar.jpg';
 
+// Color stops for timeline gradient based on scroll
+const timelineColors = [
+  { color: 'hsl(175, 70%, 50%)', name: 'teal' },      // Primary
+  { color: 'hsl(200, 70%, 50%)', name: 'blue' },      // Blue
+  { color: 'hsl(260, 70%, 60%)', name: 'purple' },    // Purple
+  { color: 'hsl(320, 70%, 55%)', name: 'pink' },      // Pink
+  { color: 'hsl(45, 90%, 55%)', name: 'gold' },       // Gold
+  { color: 'hsl(140, 60%, 45%)', name: 'green' },     // Green
+];
 interface TimelineItem {
   id: number;
   type: 'education' | 'work';
@@ -98,7 +108,7 @@ const timelineData: TimelineItem[] = [
   },
 ];
 
-const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) => {
+const TimelineCard = ({ item, index, scrollColor }: { item: TimelineItem; index: number; scrollColor: string }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
   const isLeft = index % 2 === 0;
 
@@ -112,11 +122,12 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
       {/* Timeline dot */}
       <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 z-10">
         <div
-          className={`w-4 h-4 rounded-full border-4 transition-all duration-500 ${
-            item.type === 'education'
-              ? 'bg-primary border-primary/30'
-              : 'bg-accent-foreground border-accent'
-          } ${isVisible ? 'scale-100' : 'scale-0'}`}
+          className={`w-4 h-4 rounded-full border-4 transition-all duration-500 ${isVisible ? 'scale-100' : 'scale-0'}`}
+          style={{ 
+            backgroundColor: scrollColor,
+            borderColor: `${scrollColor}50`,
+            boxShadow: `0 0 12px ${scrollColor}60`
+          }}
         />
       </div>
 
@@ -189,6 +200,40 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
 
 const Journey = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.1 });
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentColor, setCurrentColor] = useState(timelineColors[0].color);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      
+      const rect = timelineRef.current.getBoundingClientRect();
+      const timelineTop = rect.top + window.scrollY;
+      const timelineHeight = rect.height;
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate how far we've scrolled through the timeline
+      const start = timelineTop - viewportHeight;
+      const end = timelineTop + timelineHeight;
+      const progress = Math.max(0, Math.min(1, (scrollY - start) / (end - start)));
+      
+      setScrollProgress(progress);
+      
+      // Get color based on progress
+      const colorIndex = Math.min(
+        Math.floor(progress * timelineColors.length),
+        timelineColors.length - 1
+      );
+      setCurrentColor(timelineColors[colorIndex].color);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -223,20 +268,29 @@ const Journey = () => {
           >
             {/* Profile Avatar */}
             <div className="relative inline-block mb-6">
-              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg shadow-primary/10">
+              <div 
+                className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 shadow-lg transition-all duration-500"
+                style={{ 
+                  borderColor: `${currentColor}50`,
+                  boxShadow: `0 10px 40px ${currentColor}30`
+                }}
+              >
                 <img
                   src={profileAvatar}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary rounded-full flex items-center justify-center border-4 border-background">
+              <div 
+                className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full flex items-center justify-center border-4 border-background transition-colors duration-500"
+                style={{ backgroundColor: currentColor }}
+              >
                 <span className="text-xs">👨‍💻</span>
               </div>
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              My <span className="text-primary">Journey</span>
+              My <span className="transition-colors duration-500" style={{ color: currentColor }}>Journey</span>
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               From classroom to code — here's the timeline of my educational background and professional experience that shaped me as a developer.
@@ -244,14 +298,25 @@ const Journey = () => {
           </div>
 
           {/* Timeline */}
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-[22px] md:left-1/2 md:-translate-x-0.5 top-0 bottom-0 w-0.5 bg-border" />
+          <div className="relative" ref={timelineRef}>
+            {/* Animated vertical line with gradient */}
+            <div className="absolute left-[22px] md:left-1/2 md:-translate-x-0.5 top-0 bottom-0 w-0.5 bg-border overflow-hidden">
+              <div 
+                className="absolute top-0 left-0 right-0 transition-all duration-300"
+                style={{ 
+                  height: `${scrollProgress * 100}%`,
+                  background: `linear-gradient(180deg, ${timelineColors.map((c, i) => 
+                    `${c.color} ${(i / (timelineColors.length - 1)) * 100}%`
+                  ).join(', ')})`,
+                  boxShadow: `0 0 10px ${currentColor}80`
+                }}
+              />
+            </div>
 
             {/* Timeline items */}
             <div className="space-y-8 md:space-y-12">
               {timelineData.map((item, index) => (
-                <TimelineCard key={item.id} item={item} index={index} />
+                <TimelineCard key={item.id} item={item} index={index} scrollColor={currentColor} />
               ))}
             </div>
           </div>
