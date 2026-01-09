@@ -92,16 +92,38 @@ const ProjectsPage = () => {
     setLightboxOpen(true);
   };
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     setLightboxIndex((prev) => (prev + 1) % lightboxImages.length);
-  };
+  }, [lightboxImages.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     setLightboxIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length);
-  };
+  }, [lightboxImages.length]);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'ArrowRight':
+          nextImage();
+          break;
+        case 'ArrowLeft':
+          prevImage();
+          break;
+        case 'Escape':
+          setLightboxOpen(false);
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxOpen, nextImage, prevImage]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background scroll-smooth">
       <Navigation />
       
       <main className="pt-24 pb-20">

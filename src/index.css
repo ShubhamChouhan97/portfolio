@@ -2,6 +2,10 @@
 
 @tailwind base;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes scan-y {
   0% {
     top: -5%;
