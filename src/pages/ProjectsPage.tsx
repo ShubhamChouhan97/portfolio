@@ -334,7 +334,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     }, 300);
   }, [isAnimating, images.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (isAnimating) return;
     setDirection('left');
     setIsAnimating(true);
@@ -342,7 +342,7 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
       setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
       setIsAnimating(false);
     }, 300);
-  };
+  }, [isAnimating, images.length]);
 
   const goToSlide = (index: number) => {
     if (isAnimating || index === currentIndex) return;
@@ -365,6 +365,36 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     return () => clearInterval(interval);
   }, [images.length, isPaused, nextSlide]);
 
+  // Touch/swipe handling
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && images.length > 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && images.length > 1) {
+      prevSlide();
+    }
+  };
+
   return (
     <div 
       className="relative group/carousel"
@@ -373,8 +403,11 @@ const ImageCarousel = ({ images, title, onImageClick }: ImageCarouselProps) => {
     >
       {/* Main Image */}
       <div 
-        className="relative aspect-video overflow-hidden cursor-pointer"
+        className="relative aspect-video overflow-hidden cursor-pointer touch-pan-y"
         onClick={() => onImageClick(currentIndex)}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         <div 
           className="flex h-full transition-transform duration-500 ease-out"
