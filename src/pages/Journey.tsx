@@ -241,7 +241,7 @@ const Journey = () => {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="section-container py-4">
           <div className="flex items-center justify-between">
-            <Link to="/">
+            <Link to="/#about">
               <Button variant="ghost" size="sm" className="gap-2 font-mono">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Home
