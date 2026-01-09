@@ -2,19 +2,30 @@
 
 @tailwind base;
 
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
+@keyframes scan-y {
+  0% {
+    top: -5%;
   }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.1);
+  100% {
+    top: 105%;
   }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 8s ease-in-out infinite;
+@keyframes scan-x {
+  0% {
+    left: -5%;
+  }
+  100% {
+    left: 105%;
+  }
+}
+
+.animate-scan-y {
+  animation: scan-y 8s ease-in-out infinite;
+}
+
+.animate-scan-x {
+  animation: scan-x 12s ease-in-out infinite;
 }
 @tailwind components;
 @tailwind utilities;
