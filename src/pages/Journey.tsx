@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, GraduationCap, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import profileAvatar from '@/assets/profile-avatar.jpg';
 
 interface TimelineItem {
   id: number;
@@ -213,13 +214,27 @@ const Journey = () => {
       {/* Page Content */}
       <main className="section-padding">
         <div className="section-container">
-          {/* Page Title */}
+          {/* Page Title with Avatar */}
           <div
             ref={headerRef as React.RefObject<HTMLDivElement>}
             className={`text-center mb-16 transition-all duration-700 ${
               headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
+            {/* Profile Avatar */}
+            <div className="relative inline-block mb-6">
+              <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-primary/30 shadow-lg shadow-primary/10">
+                <img
+                  src={profileAvatar}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-primary rounded-full flex items-center justify-center border-4 border-background">
+                <span className="text-xs">👨‍💻</span>
+              </div>
+            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               My <span className="text-primary">Journey</span>
             </h1>

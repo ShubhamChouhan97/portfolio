@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Code2, Database, Palette, Zap, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Button } from '@/components/ui/button';
+import profileAvatar from '@/assets/profile-avatar.jpg';
 
 const About = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -79,7 +80,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Image/Visual */}
+          {/* Profile Photo with Code Visual */}
           <div
             className={`order-1 md:order-2 flex justify-center transition-all duration-700 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
@@ -87,32 +88,34 @@ const About = () => {
             style={{ transitionDelay: '200ms' }}
           >
             <div className="relative">
-              {/* Code block visual */}
-              <div className="w-64 h-72 md:w-80 md:h-96 bg-card rounded-lg border border-border p-4 font-mono text-xs md:text-sm overflow-hidden">
-                <div className="flex gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-destructive/60" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
+              {/* Profile Image */}
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden border-4 border-primary/20 shadow-xl shadow-primary/10">
+                <img
+                  src={profileAvatar}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Floating code snippet */}
+              <div className="absolute -bottom-6 -right-6 bg-card border border-border rounded-lg p-3 font-mono text-xs shadow-lg">
+                <div className="flex gap-1.5 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-destructive/60" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                  <div className="w-2 h-2 rounded-full bg-green-500/60" />
                 </div>
                 <pre className="text-muted-foreground">
                   <code>
-                    <span className="text-primary">const</span> developer = {'{'}
-                    {'\n'}  name: <span className="text-accent-foreground">"John"</span>,
+                    <span className="text-primary">const</span> dev = {'{'}
                     {'\n'}  role: <span className="text-accent-foreground">"SDE"</span>,
-                    {'\n'}  education: <span className="text-accent-foreground">"MCA"</span>,
-                    {'\n'}  skills: [
-                    {'\n'}    <span className="text-accent-foreground">"JavaScript"</span>,
-                    {'\n'}    <span className="text-accent-foreground">"React"</span>,
-                    {'\n'}    <span className="text-accent-foreground">"Node.js"</span>,
-                    {'\n'}    <span className="text-accent-foreground">"MongoDB"</span>
-                    {'\n'}  ],
-                    {'\n'}  passion: <span className="text-primary">true</span>
+                    {'\n'}  exp: <span className="text-accent-foreground">"1.5y"</span>
                     {'\n'}{'}'};
                   </code>
                 </pre>
               </div>
+              
               {/* Decorative border */}
-              <div className="absolute -inset-4 border-2 border-primary/20 rounded-lg -z-10 translate-x-4 translate-y-4" />
+              <div className="absolute -inset-4 border-2 border-primary/20 rounded-2xl -z-10 translate-x-4 translate-y-4" />
             </div>
           </div>
         </div>
