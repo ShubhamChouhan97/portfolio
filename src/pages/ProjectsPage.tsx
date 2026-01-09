@@ -162,70 +162,82 @@ const ProjectsPage = () => {
             <div className="h-px w-24 bg-primary/50 mt-6 mx-auto" />
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Projects */}
+          <div className="space-y-8">
             {projects.map((project, projectIndex) => (
               <article
                 key={project.title}
                 className="group"
               >
-                {/* Project Card */}
+                {/* Project Card - Alternating Layout */}
                 <div 
-                  className="bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full flex flex-col cursor-pointer"
+                  className={`grid lg:grid-cols-2 gap-0 bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all duration-500 cursor-pointer ${
+                    projectIndex % 2 === 1 ? 'lg:grid-flow-dense' : ''
+                  }`}
                   onClick={() => { setSelectedProject(project); setDetailModalOpen(true); }}
                 >
-                  {/* Image Carousel */}
-                  <div onClick={(e) => e.stopPropagation()}>
-                    <ImageCarousel 
-                      images={project.images} 
-                      title={project.title}
-                      onImageClick={(index) => openLightbox(project.images, index)}
-                    />
+                  {/* Image Side */}
+                  <div 
+                    className={`relative overflow-hidden ${projectIndex % 2 === 1 ? 'lg:col-start-2' : ''}`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className="aspect-video lg:aspect-auto lg:absolute lg:inset-0">
+                      <ImageCarousel 
+                        images={project.images} 
+                        title={project.title}
+                        onImageClick={(index) => openLightbox(project.images, index)}
+                      />
+                    </div>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-card via-card/60 to-transparent opacity-60 pointer-events-none" />
                   </div>
 
-                  {/* Content */}
-                  <div className="p-5 flex flex-col flex-grow">
-                    {/* Header */}
-                    <div className="mb-3">
-                      <span className="font-mono text-[10px] text-primary uppercase tracking-wider">
+                  {/* Content Side */}
+                  <div className={`p-6 md:p-8 flex flex-col justify-center ${projectIndex % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
+                    {/* Project Number Badge */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="inline-flex items-center gap-1.5 font-mono text-xs text-primary px-3 py-1 rounded-full border border-primary/30 bg-primary/5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                         Project {String(projectIndex + 1).padStart(2, '0')}
                       </span>
-                      <h2 className="text-lg font-bold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-1">
-                        {project.title}
-                      </h2>
                     </div>
 
+                    {/* Title */}
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h2>
+
                     {/* Description */}
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-4">
+                    <p className="text-muted-foreground leading-relaxed mb-6 line-clamp-3">
                       {project.description}
                     </p>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tech.slice(0, 4).map((tech) => (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tech.slice(0, 5).map((tech) => (
                         <span
                           key={tech}
-                          className="font-mono text-[10px] px-2 py-1 rounded-md bg-muted/50 text-muted-foreground border border-border"
+                          className="font-mono text-xs px-3 py-1.5 rounded-full bg-muted/50 text-foreground border border-border"
                         >
                           {tech}
                         </span>
                       ))}
-                      {project.tech.length > 4 && (
-                        <span className="font-mono text-[10px] px-2 py-1 rounded-md bg-muted/50 text-muted-foreground">
-                          +{project.tech.length - 4}
+                      {project.tech.length > 5 && (
+                        <span className="font-mono text-xs px-3 py-1.5 rounded-full bg-muted/50 text-muted-foreground">
+                          +{project.tech.length - 5} more
                         </span>
                       )}
                     </div>
 
-                    {/* Links - Push to bottom */}
-                    <div className="flex gap-2 mt-auto pt-3 border-t border-border">
+                    {/* Links */}
+                    <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-foreground text-background font-medium text-xs hover:bg-primary transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background font-medium text-sm hover:bg-primary transition-colors"
                       >
-                        <Github className="h-3.5 w-3.5" />
+                        <Github className="h-4 w-4" />
                         Code
                       </a>
                       {project.demo && (
@@ -233,10 +245,11 @@ const ProjectsPage = () => {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-foreground font-medium text-xs hover:border-primary hover:text-primary transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground font-medium text-sm hover:border-primary hover:text-primary transition-colors group/link"
                         >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                          Demo
+                          <ExternalLink className="h-4 w-4" />
+                          Live Demo
+                          <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                         </a>
                       )}
                     </div>
