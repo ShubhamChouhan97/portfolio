@@ -1,5 +1,7 @@
-import { Code2, Database, Palette, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code2, Database, Palette, Zap, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
+import { Button } from '@/components/ui/button';
 
 const About = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
@@ -34,16 +36,12 @@ const About = () => {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 I'm a Software Development Engineer with a passion for building web applications that make a difference. 
-                My journey started with an internship where I discovered the thrill of solving real-world problems through code.
+                With a strong foundation in Computer Applications (BCA & MCA), I bring both academic knowledge and hands-on experience to the table.
               </p>
               <p>
                 Currently, I focus on the <span className="text-primary font-mono">JavaScript ecosystem</span>, working with 
                 React for frontend development and Node.js for backend services. I believe in writing clean, 
                 efficient code that's easy to maintain and scale.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, 
-                or diving deep into system design concepts. I'm always eager to learn and tackle new challenges.
               </p>
             </div>
 
@@ -63,6 +61,21 @@ const About = () => {
                   <span className="text-sm text-foreground">{item.text}</span>
                 </div>
               ))}
+            </div>
+
+            {/* CTA to Journey page */}
+            <div
+              className={`mt-8 transition-all duration-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{ transitionDelay: '600ms' }}
+            >
+              <Link to="/journey">
+                <Button variant="outline" className="gap-2 font-mono group">
+                  View My Full Journey
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -86,7 +99,7 @@ const About = () => {
                     <span className="text-primary">const</span> developer = {'{'}
                     {'\n'}  name: <span className="text-accent-foreground">"John"</span>,
                     {'\n'}  role: <span className="text-accent-foreground">"SDE"</span>,
-                    {'\n'}  exp: <span className="text-accent-foreground">"1.5 years"</span>,
+                    {'\n'}  education: <span className="text-accent-foreground">"MCA"</span>,
                     {'\n'}  skills: [
                     {'\n'}    <span className="text-accent-foreground">"JavaScript"</span>,
                     {'\n'}    <span className="text-accent-foreground">"React"</span>,
