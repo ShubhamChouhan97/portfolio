@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Mail, Github, Linkedin, Send, MapPin, ArrowUpRight, MessageSquare, Clock } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, MapPin, ArrowUpRight, MessageSquare, Clock, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -34,7 +34,7 @@ const Contact = () => {
       );
       
       toast({
-        title: "Message sent!",
+        title: "Message sent! 🎉",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
       
@@ -56,19 +56,19 @@ const Contact = () => {
       icon: Github,
       label: 'GitHub',
       href: 'https://github.com',
-      color: 'hover:bg-[#333] hover:border-[#333]',
+      gradient: 'from-gray-600 to-gray-800',
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
       href: 'https://linkedin.com',
-      color: 'hover:bg-[#0077b5] hover:border-[#0077b5]',
+      gradient: 'from-blue-500 to-blue-700',
     },
     {
       icon: Mail,
       label: 'Email',
       href: 'mailto:developer@email.com',
-      color: 'hover:bg-primary hover:border-primary',
+      gradient: 'from-primary to-[hsl(320,90%,55%)]',
     },
   ];
 
@@ -80,8 +80,9 @@ const Contact = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[hsl(320,90%,55%)]/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
 
       <div className="section-container relative">
@@ -91,14 +92,19 @@ const Contact = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="text-primary font-mono text-sm tracking-wider">05. CONTACT</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mt-2">
-            Let's Work Together
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[hsl(320,90%,55%)] p-[1px]">
+              <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
+                <span className="text-primary font-mono font-bold">05</span>
+              </div>
+            </div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Let's <span className="gradient-text">Work Together</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Have a project in mind or just want to chat? I'd love to hear from you.
           </p>
-          <div className="h-px w-24 bg-primary/50 mt-6 mx-auto" />
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
@@ -110,10 +116,12 @@ const Contact = () => {
             style={{ transitionDelay: '200ms' }}
           >
             {/* Quick Info Card */}
-            <div className="bg-card rounded-2xl border border-border p-6">
+            <div className="glass rounded-2xl border border-border/50 p-6 card-hover">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <MessageSquare className="h-5 w-5 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[hsl(320,90%,55%)] p-[1px]">
+                  <div className="w-full h-full rounded-xl bg-card flex items-center justify-center">
+                    <MessageSquare className="h-5 w-5 text-primary" />
+                  </div>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Quick Response</h3>
@@ -121,9 +129,11 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="space-y-4 pt-4 border-t border-border">
-                <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-primary mt-0.5" />
+              <div className="space-y-4 pt-4 border-t border-border/50">
+                <div className="flex items-start gap-3 group">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Mail className="h-4 w-4 text-primary" />
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
                     <a href="mailto:developer@email.com" className="text-foreground hover:text-primary transition-colors font-mono text-sm">
@@ -132,16 +142,20 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5" />
+                <div className="flex items-start gap-3 group">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <MapPin className="h-4 w-4 text-primary" />
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
                     <p className="text-foreground font-mono text-sm">San Francisco, CA</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Clock className="h-5 w-5 text-primary mt-0.5" />
+                <div className="flex items-start gap-3 group">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Clock className="h-4 w-4 text-primary" />
+                  </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Timezone</p>
                     <p className="text-foreground font-mono text-sm">PST (UTC-8)</p>
@@ -151,22 +165,28 @@ const Contact = () => {
             </div>
 
             {/* Availability Badge */}
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl border border-primary/20 p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="relative">
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                  <div className="absolute inset-0 w-3 h-3 rounded-full bg-green-500 animate-ping" />
+            <div className="relative overflow-hidden rounded-2xl border border-primary/30 p-6 glow-sm">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-[hsl(320,90%,55%)]/10" />
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="relative">
+                    <div className="w-3 h-3 rounded-full bg-green-500" />
+                    <div className="absolute inset-0 w-3 h-3 rounded-full bg-green-500 animate-ping" />
+                  </div>
+                  <span className="font-mono text-sm text-primary font-medium flex items-center gap-2">
+                    <Sparkles className="h-4 w-4" />
+                    Available for Work
+                  </span>
                 </div>
-                <span className="font-mono text-sm text-primary font-medium">Available for Work</span>
+                <p className="text-sm text-foreground">
+                  Open to full-time roles, freelance projects, and interesting collaborations.
+                </p>
               </div>
-              <p className="text-sm text-foreground">
-                Open to full-time roles, freelance projects, and interesting collaborations.
-              </p>
             </div>
 
             {/* Social Links */}
             <div>
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">Connect with me</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">Connect with me</p>
               <div className="flex gap-3">
                 {socialLinks.map((link) => (
                   <a
@@ -174,10 +194,11 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group flex items-center justify-center w-12 h-12 rounded-xl bg-card border border-border transition-all duration-300 ${link.color} hover:text-white`}
+                    className="group relative w-14 h-14 rounded-xl glass border border-border/50 flex items-center justify-center hover:border-primary/50 transition-all duration-300 overflow-hidden"
                     aria-label={link.label}
                   >
-                    <link.icon className="h-5 w-5" />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${link.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                    <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-white relative z-10 transition-colors" />
                   </a>
                 ))}
               </div>
@@ -191,21 +212,23 @@ const Contact = () => {
             }`}
             style={{ transitionDelay: '300ms' }}
           >
-            <div className="bg-card rounded-2xl border border-border p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Send className="h-5 w-5 text-primary" />
+            <div className="glass rounded-2xl border border-border/50 p-6 md:p-8 card-hover">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[hsl(320,90%,55%)] p-[1px]">
+                  <div className="w-full h-full rounded-xl bg-card flex items-center justify-center">
+                    <Send className="h-5 w-5 text-primary" />
+                  </div>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Send a Message</h3>
+                  <h3 className="font-semibold text-foreground text-lg">Send a Message</h3>
                   <p className="text-sm text-muted-foreground">Fill out the form below</p>
                 </div>
               </div>
 
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground">
                       Name
                     </label>
                     <Input
@@ -216,11 +239,11 @@ const Contact = () => {
                       placeholder="John Doe"
                       required
                       maxLength={100}
-                      className="bg-background border-border focus:border-primary h-12"
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary rounded-xl transition-all duration-300"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground">
                       Email
                     </label>
                     <Input
@@ -232,13 +255,13 @@ const Contact = () => {
                       placeholder="john@example.com"
                       required
                       maxLength={255}
-                      className="bg-background border-border focus:border-primary h-12"
+                      className="h-12 bg-background/50 border-border/50 focus:border-primary rounded-xl transition-all duration-300"
                     />
                   </div>
                 </div>
                 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground">
                     Message
                   </label>
                   <Textarea
@@ -250,9 +273,9 @@ const Contact = () => {
                     rows={5}
                     required
                     maxLength={1000}
-                    className="bg-background border-border focus:border-primary resize-none"
+                    className="bg-background/50 border-border/50 focus:border-primary resize-none rounded-xl transition-all duration-300"
                   />
-                  <p className="text-xs text-muted-foreground mt-1 text-right">
+                  <p className="text-xs text-muted-foreground text-right">
                     {formData.message.length}/1000
                   </p>
                 </div>
@@ -260,20 +283,24 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full h-12 bg-primary text-primary-foreground hover:bg-primary/90 font-medium group"
+                  className="w-full h-14 rounded-xl font-semibold text-base group relative overflow-hidden"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                      Sending...
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-2">
-                      Send Message
-                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </span>
-                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-[hsl(280,90%,55%)] to-[hsl(320,90%,55%)] opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[hsl(320,90%,55%)] via-[hsl(280,90%,55%)] to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative z-10 flex items-center justify-center gap-2 text-white">
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </>
+                    )}
+                  </span>
                 </Button>
               </form>
             </div>
