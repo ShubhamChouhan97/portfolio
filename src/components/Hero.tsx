@@ -64,8 +64,8 @@ const Hero = () => {
 
           {/* Name */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 opacity-0 animate-fade-in leading-tight" style={{ animationDelay: '0.4s' }}>
-            <span className="text-foreground">John</span>{' '}
-            <span className="gradient-text">Developer</span>
+            <span className="text-foreground">Shubham</span>{' '}
+            <span className="gradient-text">Singh Chouhan</span>
           </h1>
 
           {/* Title with typing effect */}
@@ -78,9 +78,9 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            I craft <span className="text-primary font-semibold">high-performance web applications</span> with{' '}
-            <span className="font-mono text-primary">1.5+ years</span> of hands-on experience. 
-            Specializing in modern JavaScript ecosystems—from pixel-perfect UIs to robust backend systems.
+            Dedicated <span className="text-primary font-semibold">Full-Stack Developer</span> with hands-on experience in the{' '}
+            <span className="font-mono text-primary">MERN Stack</span>. 
+            Building real-world web applications with RESTful APIs, JWT authentication, and Socket.io for real-time features.
           </p>
 
           {/* CTA Buttons */}
@@ -107,7 +107,7 @@ const Hero = () => {
             <span className="text-sm text-muted-foreground mr-4">Find me on</span>
             <div className="flex gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/ShubhamChouhan97"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-12 h-12 rounded-xl glass border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
@@ -116,7 +116,7 @@ const Hero = () => {
                 <Github className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/shubham-singh-chouhan-b11b14285/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group w-12 h-12 rounded-xl glass border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
@@ -125,7 +125,7 @@ const Hero = () => {
                 <Linkedin className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
               <a
-                href="mailto:developer@email.com"
+                href="mailto:shubhamsc9799@gmail.com"
                 className="group w-12 h-12 rounded-xl glass border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-all duration-300"
                 aria-label="Email"
               >

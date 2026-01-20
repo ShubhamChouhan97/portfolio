@@ -55,14 +55,14 @@ const About = () => {
           >
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
-                I'm a <span className="text-primary font-semibold">Software Development Engineer</span> with a passion 
-                for building web applications that make a difference. With a strong foundation in Computer Applications 
-                (BCA & MCA), I bring both academic knowledge and hands-on experience to every project.
+                I'm a <span className="text-primary font-semibold">Software Engineer Intern at CodeQuotient</span>, currently 
+                pursuing BCA from Geeta University, Panipat. Coming from a Non-Medical background, I've developed strong 
+                problem-solving and analytical skills in C and C++.
               </p>
               <p>
-                My expertise lies in the <span className="gradient-text font-semibold">JavaScript ecosystem</span>—crafting 
-                responsive frontends with React and building robust backend services with Node.js. I believe in writing 
-                clean, efficient code that's easy to maintain and scale.
+                My expertise lies in the <span className="gradient-text font-semibold">MERN Stack</span>—crafting 
+                responsive frontends with React/Tailwind and building robust backend services with Node.js, Express, and MongoDB. 
+                I've built real-time features using Socket.io and implemented JWT-based authentication in production apps.
               </p>
             </div>
 
