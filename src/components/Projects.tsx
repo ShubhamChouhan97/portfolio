@@ -8,26 +8,47 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'WhatsApp Clone',
+      title: 'Document Signature Web App (DocSign)',
       description:
-        'Developed a WhatsApp Clone with a user-friendly interface using React.js. Integrated external APIs to enable real-time chat and a fully functional account management platform.',
-      tech: ['React.js', 'Node.js', 'MongoDB', 'Express'],
+        'Sign Document is a MERN-based role-driven digital signing platform for structured document workflows. It supports three roles — Admin, Officer, and Reader — each with distinct dashboards and permissions. Readers initiate signature requests using templates and bulk uploads, while Officers handle approvals, rejections, and delegations. Admins manage courts and users, ensuring organized document flow with secure digital signatures and full audit trails.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io'],
       github: 'https://github.com/ShubhamChouhan97',
       featured: true,
-      image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=500&fit=crop',
-      stats: { feature: 'Real-time', type: 'Full-Stack' },
+      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop',
+      stats: { workflow: 'Role-Based', security: 'E2E' },
+      gradient: 'from-blue-500 to-cyan-500',
+    },
+    {
+      title: 'Shikayat Seva - AI Complaint System',
+      description:
+        'An AI-powered request management system with role-based access for Admins and Users. Handles problem requests in PDF format, extracting handwritten and typed content using Gemini AI. Features include automatic issue categorization, ward-wise mapping, and analytical reports for efficient decision-making and faster resolutions.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io', 'Gemini AI'],
+      github: 'https://github.com/ShubhamChouhan97',
+      featured: true,
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+      stats: { ai: 'Gemini', feature: 'OCR' },
+      gradient: 'from-purple-500 to-pink-500',
+    },
+    {
+      title: 'Certificate Generator',
+      description:
+        'A web-based platform for creating bulk certificates using Excel data and predefined templates. Offers secure user authentication, personalized dashboards, and streamlined certificate management. The Panel System enables users to generate certificates in bulk, download them via Batch ID, and access individual ones using Certificate ID.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io'],
+      github: 'https://github.com/ShubhamChouhan97',
+      featured: true,
+      image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&h=500&fit=crop',
+      stats: { type: 'Bulk Gen', export: 'PDF' },
       gradient: 'from-green-500 to-emerald-500',
     },
     {
-      title: 'Todo App with User Authorization',
+      title: 'YapYup - Real Time Chat App',
       description:
-        'Implemented a secure JWT-based authentication system for user login and task access. Enabled personalized task management with full CRUD operations controls.',
-      tech: ['React.js', 'Node.js', 'Express', 'MongoDB', 'JWT'],
+        'A WhatsApp-inspired real-time chat application built using the MERN stack. Features secure JWT-based authentication, instant messaging powered by Socket.io, live one-on-one chats, image sharing, profile customization, and account management options.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Socket.io', 'JWT'],
       github: 'https://github.com/ShubhamChouhan97',
-      featured: true,
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop',
-      stats: { auth: 'JWT', crud: 'Full' },
-      gradient: 'from-blue-500 to-cyan-500',
+      featured: false,
+      icon: Zap,
+      gradient: 'from-green-500 to-teal-500',
     },
     {
       title: 'Quiz-Conducting Web App',
@@ -37,7 +58,7 @@ const Projects = () => {
       github: 'https://github.com/ShubhamChouhan97',
       featured: false,
       icon: Zap,
-      gradient: 'from-purple-500 to-pink-500',
+      gradient: 'from-orange-500 to-amber-500',
     },
     {
       title: 'Cricket Score Calculator',
@@ -47,7 +68,7 @@ const Projects = () => {
       github: 'https://github.com/ShubhamChouhan97',
       featured: false,
       icon: Layers,
-      gradient: 'from-orange-500 to-amber-500',
+      gradient: 'from-red-500 to-rose-500',
     },
     {
       title: 'Snake Game',

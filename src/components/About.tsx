@@ -56,13 +56,13 @@ const About = () => {
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
                 I'm a <span className="text-primary font-semibold">Software Engineer Intern at CodeQuotient</span>, currently 
-                pursuing BCA from Geeta University, Panipat. Coming from a Non-Medical background, I've developed strong 
-                problem-solving and analytical skills in C and C++.
+                pursuing BCA from Geeta University, Panipat. Full-stack developer with hands-on MERN stack experience, 
+                including projects like CodeQuotient Teacher Bot, DC Dashboard, and DocSign.
               </p>
               <p>
-                My expertise lies in the <span className="gradient-text font-semibold">MERN Stack</span>—crafting 
-                responsive frontends with React/Tailwind and building robust backend services with Node.js, Express, and MongoDB. 
-                I've built real-time features using Socket.io and implemented JWT-based authentication in production apps.
+                Skilled in building <span className="gradient-text font-semibold">scalable web applications</span>, integrating 
+                AI features with Gemini AI, managing secure workflows, and optimizing data performance. I've built real-time 
+                features using Socket.io and implemented JWT-based authentication in production apps.
               </p>
             </div>
 
