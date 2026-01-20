@@ -24,12 +24,11 @@ const Skills = () => {
       gradient: 'from-blue-500 to-cyan-400',
       bgGradient: 'from-blue-500/10 via-cyan-500/5 to-transparent',
       skills: [
-        { name: 'React', level: 90, icon: '⚛️' },
-        { name: 'JavaScript', level: 95, icon: '🟨' },
-        { name: 'TypeScript', level: 80, icon: '🔷' },
-        { name: 'HTML5', level: 95, icon: '🌐' },
-        { name: 'CSS3', level: 90, icon: '🎨' },
+        { name: 'JavaScript', level: 90, icon: '🟨' },
+        { name: 'React', level: 85, icon: '⚛️' },
         { name: 'Tailwind', level: 85, icon: '💨' },
+        { name: 'HTML5', level: 90, icon: '🌐' },
+        { name: 'CSS3', level: 85, icon: '🎨' },
       ],
     },
     {
@@ -38,10 +37,10 @@ const Skills = () => {
       gradient: 'from-green-500 to-emerald-400',
       bgGradient: 'from-green-500/10 via-emerald-500/5 to-transparent',
       skills: [
-        { name: 'Node.js', level: 85, icon: '💚' },
-        { name: 'Express.js', level: 85, icon: '🚂' },
+        { name: 'Node.js', level: 88, icon: '💚' },
+        { name: 'Express.js', level: 88, icon: '🚂' },
         { name: 'REST APIs', level: 90, icon: '🔌' },
-        { name: 'GraphQL', level: 70, icon: '◈' },
+        { name: 'Socket.io', level: 75, icon: '🔄' },
       ],
     },
     {
@@ -51,38 +50,36 @@ const Skills = () => {
       bgGradient: 'from-orange-500/10 via-amber-500/5 to-transparent',
       skills: [
         { name: 'MongoDB', level: 85, icon: '🍃' },
-        { name: 'Mongoose', level: 80, icon: '🔗' },
-        { name: 'Redis', level: 65, icon: '⚡' },
-        { name: 'PostgreSQL', level: 70, icon: '🐘' },
+        { name: 'SQL', level: 75, icon: '📊' },
+        { name: 'Redis', level: 70, icon: '⚡' },
       ],
     },
     {
-      title: 'Tools & DevOps',
+      title: 'Tools & Languages',
       icon: Wrench,
       gradient: 'from-purple-500 to-pink-400',
       bgGradient: 'from-purple-500/10 via-pink-500/5 to-transparent',
       skills: [
-        { name: 'Git', level: 90, icon: '📦' },
-        { name: 'GitHub', level: 85, icon: '🐙' },
-        { name: 'VS Code', level: 95, icon: '💻' },
-        { name: 'Linux', level: 75, icon: '🐧' },
-        { name: 'Docker', level: 65, icon: '🐳' },
-        { name: 'AWS', level: 60, icon: '☁️' },
+        { name: 'Git', level: 85, icon: '📦' },
+        { name: 'Postman', level: 85, icon: '📮' },
+        { name: 'C/C++', level: 80, icon: '⚙️' },
+        { name: 'EC2', level: 65, icon: '☁️' },
+        { name: 'MS Office', level: 80, icon: '📝' },
       ],
     },
   ];
 
   const coreCompetencies = [
-    { icon: Code2, label: 'Clean Code', description: 'Maintainable & readable', gradient: 'from-primary to-[hsl(280,90%,55%)]' },
-    { icon: Layers, label: 'Architecture', description: 'Scalable design', gradient: 'from-blue-500 to-cyan-500' },
-    { icon: Terminal, label: 'Problem Solving', description: 'DSA expertise', gradient: 'from-green-500 to-emerald-500' },
-    { icon: Cpu, label: 'Optimization', description: 'Performance-first', gradient: 'from-orange-500 to-amber-500' },
+    { icon: Code2, label: 'MERN Stack', description: 'Full-stack development', gradient: 'from-primary to-[hsl(280,90%,55%)]' },
+    { icon: Layers, label: 'OOP', description: 'Object-Oriented Design', gradient: 'from-blue-500 to-cyan-500' },
+    { icon: Terminal, label: 'Problem Solving', description: 'DSA & Critical Thinking', gradient: 'from-green-500 to-emerald-500' },
+    { icon: Cpu, label: 'API Integration', description: 'RESTful Services', gradient: 'from-orange-500 to-amber-500' },
   ];
 
   const techStack = [
-    'JavaScript', 'React', 'Node.js', 'MongoDB', 'TypeScript', 
-    'Express', 'Git', 'Linux', 'Docker', 'AWS', 'PostgreSQL', 
-    'Redis', 'GraphQL', 'Tailwind CSS'
+    'JavaScript', 'React', 'Node.js', 'MongoDB', 'Express', 
+    'Tailwind CSS', 'Git', 'C', 'C++', 'SQL', 
+    'Redis', 'JWT', 'Socket.io', 'Postman', 'EC2'
   ];
 
   return (

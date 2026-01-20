@@ -8,48 +8,66 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
+      title: 'WhatsApp Clone',
       description:
-        'Full-stack e-commerce solution with user authentication, product catalog, shopping cart, and payment integration.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+        'Developed a WhatsApp Clone with a user-friendly interface using React.js. Integrated external APIs to enable real-time chat and a fully functional account management platform.',
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Express'],
+      github: 'https://github.com/ShubhamChouhan97',
       featured: true,
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=500&fit=crop',
-      stats: { users: '10K+', uptime: '99.9%' },
+      image: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&h=500&fit=crop',
+      stats: { feature: 'Real-time', type: 'Full-Stack' },
+      gradient: 'from-green-500 to-emerald-500',
+    },
+    {
+      title: 'Todo App with User Authorization',
+      description:
+        'Implemented a secure JWT-based authentication system for user login and task access. Enabled personalized task management with full CRUD operations controls.',
+      tech: ['React.js', 'Node.js', 'Express', 'MongoDB', 'JWT'],
+      github: 'https://github.com/ShubhamChouhan97',
+      featured: true,
+      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop',
+      stats: { auth: 'JWT', crud: 'Full' },
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      title: 'Task Management Dashboard',
+      title: 'Quiz-Conducting Web App',
       description:
-        'Real-time collaborative task management app with drag-and-drop functionality and team workspaces.',
-      tech: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      featured: true,
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=500&fit=crop',
-      stats: { teams: '500+', tasks: '50K+' },
+        'Created a real-time quiz platform supporting multiple users and live interactions. Implemented smooth UI with instant question updates and score tracking.',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/ShubhamChouhan97',
+      featured: false,
+      icon: Zap,
       gradient: 'from-purple-500 to-pink-500',
     },
     {
-      title: 'API Rate Limiter',
+      title: 'Cricket Score Calculator',
       description:
-        'Middleware solution for Express.js implementing token bucket algorithm with Redis caching.',
-      tech: ['Node.js', 'Express', 'Redis', 'TypeScript'],
-      github: 'https://github.com',
+        'Developed a real-time cricket scoring application with dynamic run and over tracking. Designed an intuitive UI for live match scoring.',
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: 'https://github.com/ShubhamChouhan97',
       featured: false,
-      icon: Zap,
+      icon: Layers,
       gradient: 'from-orange-500 to-amber-500',
     },
     {
-      title: 'Portfolio Generator',
+      title: 'Snake Game',
       description:
-        'CLI tool that generates portfolio websites from config files with multiple themes.',
-      tech: ['Node.js', 'Handlebars', 'GitHub API'],
-      github: 'https://github.com',
+        'Developed a terminal-based snake game with movement, collision logic, and scoring system with 3 levels. Demonstrated core problem-solving in C.',
+      tech: ['C Language'],
+      github: 'https://github.com/ShubhamChouhan97',
+      featured: false,
+      icon: Zap,
+      gradient: 'from-gray-500 to-slate-500',
+    },
+    {
+      title: 'Tic-Tac-Toe Game',
+      description:
+        'Built a two-player terminal-based Tic-Tac-Toe game using basic I/O and game logic with win/draw conditions.',
+      tech: ['C++ Language'],
+      github: 'https://github.com/ShubhamChouhan97',
       featured: false,
       icon: Layers,
-      gradient: 'from-green-500 to-emerald-500',
+      gradient: 'from-indigo-500 to-violet-500',
     },
   ];
 
@@ -174,7 +192,7 @@ const Projects = () => {
                       <Github className="h-4 w-4" />
                       View Code
                     </a>
-                    {project.demo && (
+                    {'demo' in project && typeof project.demo === 'string' && (
                       <a
                         href={project.demo}
                         target="_blank"

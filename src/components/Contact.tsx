@@ -55,19 +55,19 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com',
+      href: 'https://github.com/ShubhamChouhan97',
       gradient: 'from-gray-600 to-gray-800',
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/shubham-singh-chouhan-b11b14285/',
       gradient: 'from-blue-500 to-blue-700',
     },
     {
       icon: Mail,
       label: 'Email',
-      href: 'mailto:developer@email.com',
+      href: 'mailto:shubhamsc9799@gmail.com',
       gradient: 'from-primary to-[hsl(320,90%,55%)]',
     },
   ];
@@ -136,8 +136,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Email</p>
-                    <a href="mailto:developer@email.com" className="text-foreground hover:text-primary transition-colors font-mono text-sm">
-                      developer@email.com
+                    <a href="mailto:shubhamsc9799@gmail.com" className="text-foreground hover:text-primary transition-colors font-mono text-sm">
+                      shubhamsc9799@gmail.com
                     </a>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                    <p className="text-foreground font-mono text-sm">San Francisco, CA</p>
+                    <p className="text-foreground font-mono text-sm">Panipat, Haryana, India</p>
                   </div>
                 </div>
                 
@@ -157,8 +157,8 @@ const Contact = () => {
                     <Clock className="h-4 w-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Timezone</p>
-                    <p className="text-foreground font-mono text-sm">PST (UTC-8)</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider">Phone</p>
+                    <p className="text-foreground font-mono text-sm">+91 9799571509</p>
                   </div>
                 </div>
               </div>
