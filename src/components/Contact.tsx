@@ -19,37 +19,51 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formRef.current) return;
-    
-    setIsSubmitting(true);
-    
-    try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      );
-      
-      toast({
-        title: "Message sent! 🎉",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-      });
-      
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      console.error('EmailJS error:', error);
-      toast({
-        title: "Failed to send message",
-        description: "Please try again or contact me directly via email.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  e.preventDefault();
+  if (!formRef.current) return;
+
+  setIsSubmitting(true);
+
+  try {
+    //  Send mail to YOU (Admin)
+    await emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ADMIN,
+      formRef.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+    //  Send confirmation mail to USER
+    await emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_USER,
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+    toast({
+      title: "Message sent successfully 🎉",
+      description: "You’ll receive a confirmation email shortly.",
+    });
+
+    setFormData({ name: '', email: '', message: '' });
+
+  } catch (error) {
+    console.error("EmailJS error:", error);
+    toast({
+      title: "Failed to send message ❌",
+      description: "Please try again later.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   const socialLinks = [
     {
@@ -148,7 +162,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wider">Location</p>
-                    <p className="text-foreground font-mono text-sm">Panipat, Haryana, India</p>
+                    <p className="text-foreground font-mono text-sm">Chandigarh,Haryana, India</p>
                   </div>
                 </div>
                 
@@ -233,7 +247,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="name"
-                      name="user_name"
+                      name="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="John Doe"
@@ -248,7 +262,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="email"
-                      name="user_email"
+                      name="email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}

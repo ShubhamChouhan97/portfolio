@@ -28,91 +28,100 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   {
     id: 1,
-    type: 'education',
-    title: 'Bachelor of Computer Applications (BCA)',
-    institution: 'Geeta University, Panipat',
-    location: 'Panipat, Haryana',
-    period: 'Sep 2023 - Present',
-    description: 'Currently pursuing BCA in Software Engineering with 8.85 CGPA. Hands-on experience in full-stack web development using the MERN stack.',
-    highlights: [
-      '8.85 CGPA',
-      '3rd Semester Topper',
-      'SIH 2024 Team Leader',
-      'Full-Stack Web Development',
-      'Data Structures & Algorithms',
-    ],
-  },
-  {
-    id: 2,
-    type: 'education',
-    title: 'Senior Secondary (12th) - Non-Medical',
-    institution: 'S.G International School',
-    location: 'Jaipur, Rajasthan',
-    period: '2022 - 2023',
-    description: 'Completed senior secondary education with focus on Science stream (Non-Medical).',
-    highlights: [
-      '64% Score',
-      'Science Stream',
-      'Physics, Chemistry, Mathematics',
-    ],
-  },
-  {
-    id: 3,
-    type: 'education',
-    title: 'Secondary School (10th)',
-    institution: 'S.G International School',
-    location: 'Jaipur, Rajasthan',
-    period: '2020 - 2021',
-    description: 'Completed secondary education with strong foundation in academics.',
-    highlights: [
-      '71% Score',
-      'All Subjects',
-    ],
-  },
-  {
-    id: 4,
     type: 'work',
     title: 'Software Engineer Intern',
     institution: 'CodeQuotient',
     location: 'IT Park Panchkula',
     period: 'Feb 2025 - Present',
-    description: 'Contributing to full-stack development with a strong backend focus. Built projects like CodeQuotient Teacher Bot, DC Dashboard, and DocSign application.',
+    description:
+      'Contributing to full-stack development with a strong backend focus. Built projects like CodeQuotient Teacher Bot, DC Dashboard, and DocSign application.',
     highlights: [
       'Integrated AI-powered chat, data persistence, and caching for Teacher Bot',
-      'Developed post module, dashboard panel for DC Dashboard',
-      'Built DocSign with request handling, signature workflows, and user management',
-      'JWT-based authentication and role-based access control',
+      'Developed post module and dashboard panel for DC Dashboard',
+      'Built DocSign with request handling and signature workflows',
+      'JWT-based authentication and RBAC',
       'Socket.io for real-time features',
     ],
   },
   {
-    id: 5,
+    id: 2,
     type: 'work',
     title: 'Back End Developer (Part-Time)',
     institution: 'SanyojM',
     location: 'Panipat, Haryana',
     period: 'Jan 2025 - Feb 2025',
-    description: 'Collaborated on backend development for client-based applications.',
+    description:
+      'Collaborated on backend development for client-based applications.',
     highlights: [
       'Developed exam and result delivery modules',
       'Designed RESTful APIs using Node.js and Express',
-      'MongoDB for efficient data storage and retrieval',
-      'Backend performance optimization and scalability',
+      'MongoDB for efficient data handling',
+      'Backend performance optimization',
     ],
   },
   {
-    id: 6,
+    id: 3,
     type: 'work',
     title: 'Summer Intern',
     institution: 'CodeQuotient',
     location: 'Panipat, Haryana',
     period: 'Jun 2024 - Jul 2024',
-    description: 'Gained practical experience in C programming, web technologies, and problem-solving through daily coding tasks and mini projects.',
+    description:
+      'Gained practical experience in C programming, web technologies, and problem-solving through daily coding tasks and mini projects.',
     highlights: [
-      'C programming: control structures, functions, memory management',
-      'HTML, CSS, JavaScript for interactive web pages',
+      'C programming fundamentals',
+      'HTML, CSS, JavaScript',
       'Cricket Score Calculator project',
-      'Project-based learning approach',
+      'Project-based learning',
+    ],
+  },
+
+  // ================= COLLEGE =================
+  {
+    id: 4,
+    type: 'education',
+    title: 'Bachelor of Computer Applications (BCA)',
+    institution: 'Geeta University, Panipat',
+    location: 'Panipat, Haryana',
+    period: 'Sep 2023 - Present',
+    description:
+      'Currently pursuing BCA in Software Engineering with strong focus on full-stack development and DSA.',
+    highlights: [
+      '8.85 CGPA',
+      '3rd Semester Topper',
+      'SIH 2024 Team Leader',
+      'MERN Stack',
+      'Data Structures & Algorithms',
+    ],
+  },
+
+  // ================= SCHOOL =================
+  {
+    id: 5,
+    type: 'education',
+    title: 'Senior Secondary (12th) - Non-Medical',
+    institution: 'S.G International School',
+    location: 'Jaipur, Rajasthan',
+    period: '2022 - 2023',
+    description:
+      'Completed senior secondary education with Science (Non-Medical) stream.',
+    highlights: [
+      '64% Score',
+      'Physics, Chemistry, Mathematics',
+    ],
+  },
+  {
+    id: 6,
+    type: 'education',
+    title: 'Secondary School (10th)',
+    institution: 'S.G International School',
+    location: 'Jaipur, Rajasthan',
+    period: '2020 - 2021',
+    description:
+      'Completed secondary education with a strong academic foundation.',
+    highlights: [
+      '71% Score',
+      'All Subjects',
     ],
   },
 ];

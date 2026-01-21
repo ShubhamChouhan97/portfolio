@@ -12,7 +12,7 @@ const Projects = () => {
       description:
         'Sign Document is a MERN-based role-driven digital signing platform for structured document workflows. It supports three roles — Admin, Officer, and Reader — each with distinct dashboards and permissions. Readers initiate signature requests using templates and bulk uploads, while Officers handle approvals, rejections, and delegations. Admins manage courts and users, ensuring organized document flow with secure digital signatures and full audit trails.',
       tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/Signature.git',
       featured: true,
       image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop',
       stats: { workflow: 'Role-Based', security: 'E2E' },
@@ -23,7 +23,7 @@ const Projects = () => {
       description:
         'An AI-powered request management system with role-based access for Admins and Users. Handles problem requests in PDF format, extracting handwritten and typed content using Gemini AI. Features include automatic issue categorization, ward-wise mapping, and analytical reports for efficient decision-making and faster resolutions.',
       tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io', 'Gemini AI'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/Sayak-Sathi.git',
       featured: true,
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
       stats: { ai: 'Gemini', feature: 'OCR' },
@@ -34,7 +34,7 @@ const Projects = () => {
       description:
         'A web-based platform for creating bulk certificates using Excel data and predefined templates. Offers secure user authentication, personalized dashboards, and streamlined certificate management. The Panel System enables users to generate certificates in bulk, download them via Batch ID, and access individual ones using Certificate ID.',
       tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/Certificate-Generator-with-login.git',
       featured: true,
       image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&h=500&fit=crop',
       stats: { type: 'Bulk Gen', export: 'PDF' },
@@ -45,8 +45,10 @@ const Projects = () => {
       description:
         'A WhatsApp-inspired real-time chat application built using the MERN stack. Features secure JWT-based authentication, instant messaging powered by Socket.io, live one-on-one chats, image sharing, profile customization, and account management options.',
       tech: ['React.js', 'Node.js', 'MongoDB', 'Socket.io', 'JWT'],
-      github: 'https://github.com/ShubhamChouhan97',
-      featured: false,
+      github: 'https://github.com/ShubhamChouhan97/yapyap.git',
+      featured: true,
+      image : 'https://images.wondershare.com/drfone/others/recover-whatsapp-images-photos.jpg',
+      stats: { realtime: 'Socket.io', auth: 'JWT' },
       icon: Zap,
       gradient: 'from-green-500 to-teal-500',
     },
@@ -55,7 +57,7 @@ const Projects = () => {
       description:
         'Created a real-time quiz platform supporting multiple users and live interactions. Implemented smooth UI with instant question updates and score tracking.',
       tech: ['HTML', 'CSS', 'JavaScript'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/Quiz.git',
       featured: false,
       icon: Zap,
       gradient: 'from-orange-500 to-amber-500',
@@ -65,7 +67,7 @@ const Projects = () => {
       description:
         'Developed a real-time cricket scoring application with dynamic run and over tracking. Designed an intuitive UI for live match scoring.',
       tech: ['HTML', 'CSS', 'JavaScript'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/cricket-score-calculator.git',
       featured: false,
       icon: Layers,
       gradient: 'from-red-500 to-rose-500',
@@ -75,7 +77,7 @@ const Projects = () => {
       description:
         'Developed a terminal-based snake game with movement, collision logic, and scoring system with 3 levels. Demonstrated core problem-solving in C.',
       tech: ['C Language'],
-      github: 'https://github.com/ShubhamChouhan97',
+      github: 'https://github.com/ShubhamChouhan97/snake-game.git',
       featured: false,
       icon: Zap,
       gradient: 'from-gray-500 to-slate-500',

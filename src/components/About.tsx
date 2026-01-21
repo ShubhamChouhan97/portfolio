@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Code2, Database, Palette, Zap, ArrowRight, Sparkles } from 'lucide-react';
+import { Code2, Database, Palette, Zap, ArrowRight, Sparkles, Download,ArrowUpRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Button } from '@/components/ui/button';
 import profileAvatar from '@/assets/profile-avatar.jpg';
@@ -57,7 +57,7 @@ const About = () => {
               <p>
                 I'm a <span className="text-primary font-semibold">Software Engineer Intern at CodeQuotient</span>, currently 
                 pursuing BCA from Geeta University, Panipat. Full-stack developer with hands-on MERN stack experience, 
-                including projects like CodeQuotient Teacher Bot, DC Dashboard, and DocSign.
+                including projects like Teacher Bot, DC Dashboard, DocSign, Yupyap and many more.
               </p>
               <p>
                 Skilled in building <span className="gradient-text font-semibold">scalable web applications</span>, integrating 
@@ -153,6 +153,24 @@ const About = () => {
               <div className="absolute -top-8 right-1/4 w-6 h-6 border-2 border-[hsl(320,90%,55%)]/40 rounded-full animate-float" style={{ animationDelay: '1s' }} />
             </div>
           </div>
+        </div>
+        
+        {/* Resume CTA */}
+        <div
+          className={`mt-16 text-center transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '600ms' }}
+        >
+          <a
+            href="/public/shubham.pdf"
+            target="_blank"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl glass border border-primary/30 hover:border-primary text-foreground font-medium hover:text-primary transition-all duration-300 glow-sm"
+          >
+            <Download className="h-4 w-4" />
+            <span>Resume</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </div>
       </div>
     </section>

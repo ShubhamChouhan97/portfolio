@@ -1,4 +1,4 @@
-import { Briefcase, Calendar, MapPin, ArrowUpRight, Award, Download } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Experience = () => {
@@ -185,23 +185,6 @@ const Experience = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Resume CTA */}
-        <div
-          className={`mt-16 text-center transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-          style={{ transitionDelay: '600ms' }}
-        >
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl glass border border-primary/30 hover:border-primary text-foreground font-medium hover:text-primary transition-all duration-300 glow-sm"
-          >
-            <Download className="h-4 w-4" />
-            <span>Download Resume</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
         </div>
       </div>
     </section>

@@ -54,10 +54,10 @@ const Footer = () => {
           {/* Copyright & Built with */}
           <div className="flex flex-col items-center gap-2 text-center">
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              Built with <Heart className="h-4 w-4 text-primary animate-pulse" /> using React & Tailwind
+              Built with <Heart className="h-4 w-4 text-primary animate-pulse" /> by Shubham Singh Chouhan
             </p>
             <p className="font-mono text-xs text-muted-foreground/70">
-              © {new Date().getFullYear()} John Developer. All rights reserved.
+              © {new Date().getFullYear()} All rights reserved.
             </p>
           </div>
 
